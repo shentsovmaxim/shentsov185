@@ -1,0 +1,58 @@
+#включить "opencv2/highgui/highgui.hpp"
+#включить "opencv2/imgproc/imgproc.hpp"
+#включить <iostream>
+#включить <stdio.h>
+#включить <stdlib.h>
+
+использование пространства имен cv;
+использование пространства имен std;
+
+int main()
+{
+ setlocale(LC_ALL, "Русский");
+ Коврик img;
+ img = imread("3.jpg", 1);
+ именоВанное окно("окно", WINDOW_AUTOSIZE);
+ имшоу("окно", img);
+ Мат src_gray;
+ Mat canny_output;
+ Цвет CVT(img, src_gray, COLOR_RGB 2BGR);
+ размытие(src_gray, src_gray, Размер(3, 3));
+ двойное значение lower_thresh_val = 100, значение high_thresh_val = 300;
+ Хитрый(src_gray, хитрый вывод, низкий уровень, высокий уровень, 3);
+ namedWindow("Серое изображение", WINDOW_AUTOSIZE);
+ imshow("Серое изображение", canny_output);
+ я пишу("canny_output.jpeg", canny_output);
+ ГСЧ гсч(12345);
+ вектор<вектор<Точка><Точка>>контуры;
+ векторная иерархия<Vec4i>;
+ Контакты поиска(canny_output, контуры, иерархия, RETR_TREE, CHAIN_APPROX_SIMPLE, точка(0, 0));
+ вектор<Моменты>mu(контуры.размер());
+ для (int i = 0; i
+{
+mu[i] = моменты(контуры[i], ложные);
+}
+ вектор<Point2f>mc(контуры.размер());
+ для (int i = 0; i 
+	{
+ mc[i] = Point2f(mu[i].m10 / mu[i].m00, mu[i].m01 / mu[i].m00);
+	}
+ для (int i = 0;i
+ printf("контур № %d:цент масс - x = %.2f y = %.2f; длина - %.2f \n", i, mu[i].m10 / mu[i].m00, mu[i].m01 / mu[i].m00, arcLength(contours[i], true));
+	}
+	
+ Рисунок мата = Мат::нули(canny_output.size(), CV_8UC3);
+ для (int i = 0; i
+	{
+ Скалярный цвет = Скалярный(rng.равномерный(0, 255), rng.равномерный(0, 255), rng.равномерный(0, 255));
+ drawContours(рисунок, контуры, i, цвет, 2, 8, иерархия, 0, точка());
+		circle(drawing, mc[i], 4, color, -1, 5, 0);
+	}
+	namedWindow("контуры", WINDOW_AUTOSIZE);
+	imshow("контуры", drawing);
+
+	waitKey(0);
+	system("pause");
+	return(0);
+
+}
