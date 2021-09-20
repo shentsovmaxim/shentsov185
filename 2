@@ -1,0 +1,32 @@
+#включить "opencv2/highgui/highgui.hpp"
+
+#включить  "opencv2/imgproc/imgproc.hpp"
+
+#включить  <iostream>
+
+#включить  <stdio.h>
+
+#включить  <stdlib.h>
+
+использование пространства имен cv;
+использование пространства имен std;
+
+int основной(int argc, символ** argv)
+
+{
+	setlocale(LC_ALL, "Русский");
+	имя файла символа[80];
+ cout << "Введите имя файла, в который хотите внести изменения, и нажмите Enter" << endl;
+ cin.getline(имя файла, 80);
+ cout << "открыть файл";
+ cout << имя файла <;
+ Mat imgt = imread(имя файла, 1);
+
+	namedWindow("исходное окно", WINDOW_AUTOSIZE);
+	imshow("исходное окно", imgt);
+	Клавишаожидания(0);
+	возврат 0;
+
+}
+
+
